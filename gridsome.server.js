@@ -5,23 +5,53 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
-
+// module.exports = {
+//   // plugins: [
+//   //   {
+//   //     use: 'gridsome-source-directus',
+//   //     options: {
+//   //       apiUrl: 'http://161.35.65.140',
+//   //       project: 'furuno_cms',
+//   //       email: 'william@loxodromic.se',
+//   //       password: 'test123',
+//   //       collections: [
+//   //         {
+//   //           name: 'products',
+//   //           fields: '*.*'
+//   //         }
+//   //       ]
+//   //     }
+//   //   }
+//   // ]
+// }
 const axios = require('axios')
 
 module.exports = function (api) {
   api.loadSource(async actions => {
-    const { data } = await axios.get('http://161.35.65.140/furuno_cms/items/products')
+    const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon')
+    //const { data } = await axios.get('http://161.35.65.140/furuno_cms/items/products')
 
-    const collection = actions.addCollection('Product')
+    const collection = actions.addCollection({
+      typeName: 'Product'
+    })
 
-    for (const item of data) {
+    // var test = data
+
+    //console.log(data)
+
+    // var test2 = data.data
+
+    // console.log(test2)
+
+    for (const item of data.results) {
+      console.log(item.name)
       collection.addNode({
-        id: item.model
+        model: item.name
       })
     }
-  })
+   })
 
-  api.createPages(({ createPage }) => {
-    // Use the Pages API here: https://gridsome.org/docs/pages-api/
-  })
+  // api.createPages(({ createPage }) => {
+  //   // Use the Pages API here: https://gridsome.org/docs/pages-api/
+  // })
 }
