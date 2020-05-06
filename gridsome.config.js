@@ -6,5 +6,19 @@
 
 module.exports = {
   siteName: 'Gridsome',
-  plugins: []
+  plugins: [
+    {
+      use: "gridsome-source-directus",
+      options: {
+        apiUrl: "http://161.35.65.140",
+        project: "furuno_cms",
+        collections: [
+          {
+            name: 'products',
+            fields: '*.*'
+          }
+        ]
+      }
+    }
+  ]
 }
