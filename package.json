@@ -8,7 +8,10 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "gridsome": "^0.7.0"
+    "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.13.1",
+    "gridsome": "^0.7.0",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "gridsome-source-directus": "^0.1.1"

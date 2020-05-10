@@ -5,7 +5,7 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'Gridsome',
+  siteName: 'Furuno Sweden',
   plugins: [
     {
       use: "gridsome-source-directus",
@@ -15,7 +15,7 @@ module.exports = {
         collections: [
           {
             name: 'products',
-            fields: '*.*'
+            fields: '*.*.*'
           }
         ]
       }
