@@ -15,47 +15,22 @@
     >
       <!-- Text slides with image -->
       <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/1024/480/?image=58"
+        v-bind:img-src='slide_1'
       ></b-carousel-slide>
 
-      <!-- Slides with custom text -->
-      <b-carousel-slide v-bind:img-src='slide_1'>
-        <h1>Hello world!</h1>
-      </b-carousel-slide>
+      <b-carousel-slide
+        v-bind:img-src='slide_2'
+      ></b-carousel-slide>
 
-      <!-- Slides with image only -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
+      <b-carousel-slide
+        v-bind:img-src='slide_3'
+      ></b-carousel-slide>
 
-      <!-- Slides with img slot -->
-      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-      <b-carousel-slide>
-        <template v-slot:img>
-          <img
-            class="d-block img-fluid w-100"
-            width="1024"
-            height="480"
-            src= "https://picsum.photos/1024/480/?image=58"
-            alt="image slot"
-          >
-        </template>
-      </b-carousel-slide>
+      <b-carousel-slide
+        v-bind:img-src='slide_4'
+      ></b-carousel-slide>
 
-      <!-- Slide with blank fluid image to maintain slide aspect ratio -->
-      <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros felis, tincidunt
-          a tincidunt eget, convallis vel est. Ut pellentesque ut lacus vel interdum.
-        </p>
-      </b-carousel-slide>
     </b-carousel>
-
-    <p class="mt-4">
-      Slide #: {{ slide }}<br>
-      Sliding: {{ slide_1 }}
-    </p>
-
   </div>
 </template>
 
@@ -67,7 +42,10 @@
       return {
         slide: 0,
         sliding: null,
-        slide_1: null
+        slide_1: null,
+        slide_2: null,
+        slide_3: null,
+        slide_4: null,
       }
     },
     methods: {
@@ -81,9 +59,12 @@
     async mounted () {
       try {
         const results = await axios.get(
-          'http://161.35.65.140/furuno_cms/items/products?fields=promoter.data')
+          'http://161.35.65.140/furuno_cms/items/products?fields=*.*')
 
         this.slide_1 = results.data.data[0].promoter.data.full_url
+        this.slide_2 = results.data.data[1].promoter.data.full_url
+        this.slide_3 = results.data.data[2].promoter.data.full_url
+        this.slide_4 = results.data.data[3].promoter.data.full_url
 
       } catch (error) {
         console.log(error)
