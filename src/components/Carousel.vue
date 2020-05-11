@@ -17,11 +17,11 @@
       <b-carousel-slide
         caption="First slide"
         text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/1024/480/?image=52"
+        img-src="https://picsum.photos/1024/480/?image=58"
       ></b-carousel-slide>
 
       <!-- Slides with custom text -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
+      <b-carousel-slide v-bind:img-src='slide_1'>
         <h1>Hello world!</h1>
       </b-carousel-slide>
 
@@ -36,7 +36,7 @@
             class="d-block img-fluid w-100"
             width="1024"
             height="480"
-            src="https://picsum.photos/1024/480/?image=55"
+            src= "https://picsum.photos/1024/480/?image=58"
             alt="image slot"
           >
         </template>
@@ -51,10 +51,11 @@
       </b-carousel-slide>
     </b-carousel>
 
-    <!-- <p class="mt-4">
+    <p class="mt-4">
       Slide #: {{ slide }}<br>
-      Sliding: {{ sliding }}
-    </p> -->
+      Sliding: {{ slide_1 }}
+    </p>
+
   </div>
 </template>
 
@@ -66,7 +67,7 @@
       return {
         slide: 0,
         sliding: null,
-        promoted: null
+        slide_1: null
       }
     },
     methods: {
@@ -80,10 +81,10 @@
     async mounted () {
       try {
         const results = await axios.get(
-          'https://jsonplaceholder.typicode.com/todos'
-        )
+          'http://161.35.65.140/furuno_cms/items/products?fields=promoter.data')
 
-        this.todos = results.data.data
+        this.slide_1 = results.data.data[0].promoter.data.full_url
+
       } catch (error) {
         console.log(error)
       }
