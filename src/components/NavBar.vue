@@ -17,13 +17,11 @@
             </b-nav-form>
 
             <b-nav-item-dropdown text="Lang" right style="padding-left: 1em;">
-            <template v-slot:button-content>
-                <b-icon icon="flag-fill"></b-icon>
-            </template>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
+              <template v-slot:button-content>
+                  <b-icon icon="flag-fill"></b-icon>
+              </template>
+              <b-dropdown-item href="#">EN</b-dropdown-item>
+              <b-dropdown-item href="#">SE</b-dropdown-item>
             </b-nav-item-dropdown>
 
         </b-navbar-nav>

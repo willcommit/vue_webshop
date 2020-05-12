@@ -1,27 +1,30 @@
 <template>
-    <b-card-group deck>
-        <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
-          <b-card-text>
-            This is a wider card with supporting text below as a natural lead-in to additional content.
-            This content is a little bit longer.
+  <div>
+    <b-card-group deck >
+        <b-card 
+            :title="product.name"
+            v-for="product in products"
+            :key="product.id"
+            :img-src="product.image"
+            img-alt="Image" img-top  
+        ><b-card-text>
+            {{ product.summary }}
           </b-card-text>
-        </b-card>
-
-        <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
-          <b-card-text>
-            This card has supporting text below as a natural lead-in to additional content.
-          </b-card-text>
-          
-        </b-card>
-
-        <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top>
-          <b-card-text>
-            This is a wider card with supporting text below as a natural lead-in to additional content.
-            This card has even longer content than the first to show that equal height action.
-          </b-card-text>
-          
         </b-card>
     </b-card-group>
+    <b-card-group deck >
+        <b-card 
+            :title="product.name"
+            v-for="product in products"
+            :key="product.id"
+            :img-src="product.image"
+            img-alt="Image" img-top  
+        ><b-card-text>
+            {{ product.summary }}
+          </b-card-text>
+        </b-card>
+    </b-card-group>
+  </div>
 </template>
 
 
@@ -33,10 +36,7 @@
       return {
         slide: 0,
         sliding: null,
-        slide_1: null,
-        slide_2: null,
-        slide_3: null,
-        slide_4: null,
+        products: []
       }
     },
     methods: {
@@ -50,13 +50,24 @@
     async mounted () {
       try {
         const results = await axios.get(
-          'http://161.35.65.140/furuno_cms/items/products?fields=*.*')
+          'http://161.35.65.140/furuno_cms/items/products?fields=*.*.*')
 
-        this.slide_1 = results.data.data[0].promoter.data.full_url
-        this.slide_2 = results.data.data[1].promoter.data.full_url
-        this.slide_3 = results.data.data[2].promoter.data.full_url
-        this.slide_4 = results.data.data[3].promoter.data.full_url
+          const data = results.data.data
 
+          for (const result of data) {
+            if (result.status = "published" && result.product_images.length >= 1) {
+              const product = {}
+              product.id = result.id
+              product.name = result.name
+              product.summary = result.translations[0].summary
+              product.image = result.product_images[0].directus_files_id.data.full_url
+              //product.image = result.product_images[0].directus_files_id.data.thumbnails[4].url
+
+              //console.log(product)
+
+              this.products.push(product)
+            }
+          }
       } catch (error) {
         console.log(error)
       }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+
     <b-carousel
       id="carousel-1"
       v-model="slide"
@@ -17,11 +17,12 @@
       <b-carousel-slide
         v-for="promote in promotes"
         :key="promote.id"
-        :img-src="promote.promoter.data.full_url"
+        :img-src="promote.url"
+        img-alt="img"
       ></b-carousel-slide>
 
     </b-carousel>
-  </div>
+
 </template>
 
 <script>
@@ -32,8 +33,7 @@
       return {
         slide: 0,
         sliding: null,
-        promotes: null,
-        urls: [ {key: 0, data: "https://picsum.photos/1024/480/?image=10" }, {key: 1, data: "https://picsum.photos/1024/480/?image=10" }],
+        promotes: []
       }
     },
     methods: {
@@ -47,15 +47,19 @@
     async mounted () {
       try {
         const results = await axios.get(
-          'http://161.35.65.140/furuno_cms/items/products?fields=promoter.*')
+          'http://161.35.65.140/furuno_cms/items/products?fields=promote,promoter.*')
 
-        this.promotes = results.data.data
+          const data = results.data.data
 
-        console.log(results.data.data[0].promoter.data.full_url)
-        // this.slide_2 = results.data.data[1].promoter.data.full_url
-        // this.slide_3 = results.data.data[2].promoter.data.full_url
-        // this.slide_4 = results.data.data[3].promoter.data.full_url
+          for (const result of data) {
+            if (result.promote) {
+              const promoter_image = {}
+              promoter_image.id = result.promoter.id
+              promoter_image.url = result.promoter.data.full_url
 
+              this.promotes.push(promoter_image)
+            }
+          }
       } catch (error) {
         console.log(error)
       }

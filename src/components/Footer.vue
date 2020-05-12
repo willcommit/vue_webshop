@@ -14,6 +14,6 @@
         padding: 1em;
         color: #fff;
         font-size: 0.875rem;
-        background: #004ea2;
+        background: #004EA2;
     }
 </style>
