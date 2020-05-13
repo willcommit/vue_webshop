@@ -15,10 +15,18 @@ module.exports = {
         collections: [
           {
             name: 'products',
-            fields: '*.*.*'
+            fields: '*.*.*',
           }
         ]
       }
     }
-  ]
+  ],
+  templates: {
+    products: [
+      {
+        path: '/product/:slug',
+        component: './src/templates/Product.vue'
+      },
+    ]
+  }
 }

@@ -1,7 +1,8 @@
 <template>
   <div class="layout">
-    
+    <NavBar></NavBar>
     <slot/>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -15,7 +16,7 @@ query {
 
 <style>
 body {
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-family: Roboto,"Helvetica Neue",Arial,sans-serif;
   margin:0;
   padding:0;
   line-height: 1.5;
@@ -28,9 +29,19 @@ body {
   padding-right: 20px;
 }
 
-
-
 .nav__link {
   margin-left: 20px;
 }
 </style>
+
+<script>
+import NavBar from '~/components/NavBar.vue'
+import Footer from '~/components/Footer.vue'
+
+export default {
+  components: {
+    NavBar,
+    Footer
+  },
+}
+</script>

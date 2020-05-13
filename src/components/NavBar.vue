@@ -1,8 +1,8 @@
 <template>
     <div>
-    <b-navbar toggleable="lg" class="navbar navbar-light" style="background-color: #FFFFF; padding: 1.5em;">
-        <b-navbar-brand href="#">
-            <img src="../../logo.png" alt="Furuno" width="200px" height="auto">
+    <b-navbar  toggleable="lg" class="navbar navbar-light" style="background-color: #FFFFF; padding: 1.5em;">
+        <b-navbar-brand href="/">
+            <img src="../../logo.png" alt="Furuno" width="250px" height="auto">
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

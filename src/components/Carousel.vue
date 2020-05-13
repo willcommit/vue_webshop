@@ -14,13 +14,14 @@
       @sliding-end="onSlideEnd">
 
       <!-- Text slides with image -->
-      <b-carousel-slide
-        v-for="promote in promotes"
+      <a v-for="promote in promotes"
         :key="promote.id"
+        :href= promote.path>
+      <b-carousel-slide
         :img-src="promote.url"
         img-alt="img"
       ></b-carousel-slide>
-
+      </a>
     </b-carousel>
 
 </template>
@@ -47,13 +48,14 @@
     async mounted () {
       try {
         const results = await axios.get(
-          'http://161.35.65.140/furuno_cms/items/products?fields=promote,promoter.*')
+          'http://161.35.65.140/furuno_cms/items/products?fields=slug,promote,promoter.*')
 
           const data = results.data.data
 
           for (const result of data) {
             if (result.promote) {
               const promoter_image = {}
+              promoter_image.path = "/product/" + result.slug
               promoter_image.id = result.promoter.id
               promoter_image.url = result.promoter.data.full_url
 
