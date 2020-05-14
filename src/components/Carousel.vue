@@ -14,11 +14,11 @@
       @sliding-end="onSlideEnd">
 
       <!-- Text slides with image -->
-      <a v-for="promote in promotes"
-        :key="promote.id"
-        :href= promote.path>
+      <a v-for="edge in $static.allProducts.edges"
+        :key="edge.node.id"
+        :href="edge.node.path">
       <b-carousel-slide
-        :img-src="promote.url"
+        :img-src="edge.node.promoter.data.full_url"
         img-alt="img"
       ></b-carousel-slide>
       </a>
@@ -26,45 +26,65 @@
 
 </template>
 
-<script>
-  import axios from 'axios'
 
-  export default {
-    data() {
-      return {
-        slide: 0,
-        sliding: null,
-        promotes: []
-      }
-    },
-    methods: {
-      onSlideStart(slide) {
-        this.sliding = true
-      },
-      onSlideEnd(slide) {
-        this.sliding = false
-      }
-    },
-    async mounted () {
-      try {
-        const results = await axios.get(
-          'https://cms.furuno.se/furuno_new_cms/items/products?fields=slug,promote,promoter.*')
-
-          const data = results.data.data
-
-          for (const result of data) {
-            if (result.promote) {
-              const promoter_image = {}
-              promoter_image.path = "/product/" + result.slug
-              promoter_image.id = result.promoter.id
-              promoter_image.url = result.promoter.data.full_url
-
-              this.promotes.push(promoter_image)
-            }
+<static-query>
+{
+  allProducts (filter: { promote: { eq: true }}){
+    edges{
+      node{
+        path
+        promote
+        promoter{
+          id
+          data{
+            full_url
           }
-      } catch (error) {
-        console.log(error)
-      }
-    } 
+        }
+      }  
+    }
   }
+}
+</static-query>
+
+<script>
+  // import axios from 'axios'
+
+  // export default {
+  //   data() {
+  //     return {
+  //       slide: 0,
+  //       sliding: null,
+  //       promotes: []
+  //     }
+  //   },
+  //   methods: {
+  //     onSlideStart(slide) {
+  //       this.sliding = true
+  //     },
+  //     onSlideEnd(slide) {
+  //       this.sliding = false
+  //     }
+  //   },
+  //   async mounted () {
+  //     try {
+  //       const results = await axios.get(
+  //         'https://cms.furuno.se/furuno_new_cms/items/products?fields=slug,promote,promoter.*')
+
+  //         const data = results.data.data
+
+  //         for (const result of data) {
+  //           if (result.promote) {
+  //             const promoter_image = {}
+  //             promoter_image.path = "/product/" + result.slug
+  //             promoter_image.id = result.promoter.id
+  //             promoter_image.url = result.promoter.data.full_url
+
+  //             this.promotes.push(promoter_image)
+  //           }
+  //         }
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   } 
+  // }
 </script>
