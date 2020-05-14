@@ -10,8 +10,8 @@ module.exports = {
     {
       use: "gridsome-source-directus",
       options: {
-        apiUrl: "http://161.35.65.140",
-        project: "furuno_cms",
+        apiUrl: "https://cms.furuno.se",
+        project: "furuno_new_cms",
         collections: [
           {
             name: 'products',

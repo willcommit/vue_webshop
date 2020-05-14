@@ -41,7 +41,7 @@
     async mounted () {
       try {
         const results = await axios.get(
-          'http://161.35.65.140/furuno_cms/items/products?fields=*.*.*')
+          'https://cms.furuno.se/furuno_new_cms/items/products?fields=*.*.*')
 
           const data = results.data.data
           const temp_product = []
@@ -55,7 +55,7 @@
               product.summary = result.translations[0].summary
               product.image = result.product_images[0].directus_files_id.data.full_url
               //product.image = result.product_images[0].directus_files_id.data.thumbnails[4].url
-              //console.log(product)
+              console.log(product)
               this.products.push(product)
             }
   

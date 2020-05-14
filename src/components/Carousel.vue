@@ -48,7 +48,7 @@
     async mounted () {
       try {
         const results = await axios.get(
-          'http://161.35.65.140/furuno_cms/items/products?fields=slug,promote,promoter.*')
+          'https://cms.furuno.se/furuno_new_cms/items/products?fields=slug,promote,promoter.*')
 
           const data = results.data.data
 
