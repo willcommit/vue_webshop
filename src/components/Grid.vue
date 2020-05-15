@@ -21,8 +21,7 @@
 </template>
 
 <style>
-    .grid-container {
-        
+    .grid-container { 
         display: grid;
         gap: 2rem;
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -55,7 +54,6 @@
               product.summary = result.translations[0].summary
               product.image = result.product_images[0].directus_files_id.data.full_url
               //product.image = result.product_images[0].directus_files_id.data.thumbnails[4].url
-              console.log(product)
               this.products.push(product)
             }
   

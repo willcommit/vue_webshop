@@ -18,10 +18,10 @@
         :key="edge.node.id"
         :href="edge.node.path">
       <b-carousel-slide
-        :img-src="edge.node.promoter.data.full_url"
+        :img-src= edge.node.promoter.data.full_url
         img-alt="img"
       ></b-carousel-slide>
-      </a>
+      product page</a>
     </b-carousel>
 
 </template>
@@ -38,6 +38,7 @@
           id
           data{
             full_url
+            url (width: 1920, height: 960)
           }
         }
       }  
@@ -49,22 +50,22 @@
 <script>
   // import axios from 'axios'
 
-  // export default {
-  //   data() {
-  //     return {
-  //       slide: 0,
-  //       sliding: null,
-  //       promotes: []
-  //     }
-  //   },
-  //   methods: {
-  //     onSlideStart(slide) {
-  //       this.sliding = true
-  //     },
-  //     onSlideEnd(slide) {
-  //       this.sliding = false
-  //     }
-  //   },
+  export default {
+    data() {
+      return {
+        slide: 0,
+        sliding: null,
+        promotes: []
+      }
+    },
+    methods: {
+      onSlideStart(slide) {
+        this.sliding = true
+      },
+      onSlideEnd(slide) {
+        this.sliding = false
+      }
+    },
   //   async mounted () {
   //     try {
   //       const results = await axios.get(
@@ -86,5 +87,5 @@
   //       console.log(error)
   //     }
   //   } 
-  // }
+     }
 </script>
