@@ -17,11 +17,11 @@
       <a v-for="edge in $static.allProducts.edges"
         :key="edge.node.id"
         :href="edge.node.path">
-      <b-carousel-slide
-        :img-src= edge.node.promoter.data.full_url
-        img-alt="img"
-      ></b-carousel-slide>
-      product page</a>
+        <b-carousel-slide
+          :img-src= edge.node.promoter.data.full_url
+          img-alt="img"
+        ></b-carousel-slide>
+      </a>
     </b-carousel>
 
 </template>
