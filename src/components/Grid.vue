@@ -42,11 +42,12 @@
         const results = await axios.get(
           'https://cms.furuno.se/furuno_new_cms/items/products?fields=*.*.*')
 
-          const data = results.data.data
-          const temp_product = []
+          const data = results
+          
 
-          for (const result of data) {
-            if (result.status = "published" && result.product_images.length >= 1) {
+          for (const result of data.data.data) {
+            if (result.status == "published" && result.product_images.length >= 1) {
+              
               const product = {}
               product.path = "/product/" + result.slug
               product.id = result.id
