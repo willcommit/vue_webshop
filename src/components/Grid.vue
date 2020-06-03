@@ -1,20 +1,20 @@
 <template>
      <div class="grid-container">
-            <b-card
-                v-for="product in products" 
-                :key= product.id
-                :title="product.name"
-                :img-src="product.image"
-                img-alt="Image" img-top
-                class="grid-item"  >
-                <b-card-text>
-                    {{ product.summary }}
-                </b-card-text>
+        <b-card
+            v-for="product in products" 
+            :key= product.id
+            :title="product.name"
+            :img-src="product.image"
+            img-alt="Image" img-top
+            class="grid-item"  >
+            <b-card-text>
+                {{ product.summary }}
+            </b-card-text>
 
-                <template v-slot:footer>
-                    <b-button :href= product.path variant="primary" style="background-color: #004EA2;">Learn More</b-button>
-                </template>
-            </b-card>    
+            <template v-slot:footer>
+                <b-button :href= product.path variant="primary" style="background-color: #004EA2;">Learn More</b-button>
+            </template>
+        </b-card>    
     </div> 
 </template>
 
