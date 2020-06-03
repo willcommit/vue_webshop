@@ -1,5 +1,4 @@
 <template>
-
     <b-carousel
       id="carousel-1"
       v-model="slide"
@@ -23,7 +22,6 @@
         ></b-carousel-slide>
       </a>
     </b-carousel>
-
 </template>
 
 
@@ -48,8 +46,6 @@
 </static-query>
 
 <script>
-  // import axios from 'axios'
-
   export default {
     data() {
       return {
@@ -66,26 +62,5 @@
         this.sliding = false
       }
     },
-  //   async mounted () {
-  //     try {
-  //       const results = await axios.get(
-  //         'https://cms.furuno.se/furuno_new_cms/items/products?fields=slug,promote,promoter.*')
-
-  //         const data = results.data.data
-
-  //         for (const result of data) {
-  //           if (result.promote) {
-  //             const promoter_image = {}
-  //             promoter_image.path = "/product/" + result.slug
-  //             promoter_image.id = result.promoter.id
-  //             promoter_image.url = result.promoter.data.full_url
-
-  //             this.promotes.push(promoter_image)
-  //           }
-  //         }
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   } 
-     }
+  }
 </script>

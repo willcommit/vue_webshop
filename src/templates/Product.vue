@@ -8,13 +8,13 @@
 </template>
 
 <page-query>
-query($path: String!) {
-  products(path: $path) {
-    name
-    translations {
-      language
-      features
+  query($path: String!) {
+    products(path: $path) {
+      name
+      translations {
+        language
+        features
+      }
     }
   }
-}
 </page-query>

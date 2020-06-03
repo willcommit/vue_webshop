@@ -1,6 +1,5 @@
 <template>
      <div class="grid-container">
-      
             <b-card
                 v-for="product in products" 
                 :key= product.id
@@ -15,8 +14,7 @@
                 <template v-slot:footer>
                     <b-button :href= product.path variant="primary" style="background-color: #004EA2;">Learn More</b-button>
                 </template>
-            </b-card>
-        
+            </b-card>    
     </div> 
 </template>
 
@@ -44,20 +42,16 @@
 
           const data = results
           
-
           for (const result of data.data.data) {
             if (result.status == "published" && result.product_images.length >= 1) {
-              
               const product = {}
               product.path = "/product/" + result.slug
               product.id = result.id
               product.name = result.name
               product.summary = result.translations[0].summary
               product.image = result.product_images[0].directus_files_id.data.full_url
-              //product.image = result.product_images[0].directus_files_id.data.thumbnails[4].url
               this.products.push(product)
-            }
-  
+            } 
           }
       } catch (error) {
         console.log(error)
